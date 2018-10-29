@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "FirstViewController.h"
+#import "SecondViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,8 +17,23 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    UIViewController *vc1 = [[FirstViewController alloc] init];
+    UIViewController *vc2 = [[SecondViewController alloc] init];
+    
+    vc1.tabBarItem.image = [UIImage imageNamed:@"first"];
+    vc2.tabBarItem.image = [UIImage imageNamed:@"second"];
+    
+    vc1.tabBarItem.title = @"1";
+    vc2.tabBarItem.title = @"2";
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = @[vc1, vc2];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = self.tabBarController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
